@@ -1,0 +1,76 @@
+gedit: permet de créer un fichier et d'éditer son contenu
+cat: permet d'afficher le contenu d'un fichier
+	argument -n : permet de rajouter le nombre des lignes
+cut: permet d'afficher des zones spécifiques d'un fichier
+	-c : Permet de sélectionner les colonnes
+	-d : Permet de sélectionner les séparateurs de champ
+	-f : indique numéro de champs à afficher
+tail: selectionne les lignes à partir de la fin -10 ( 10 derniere ) +10 ( depuis la 10 eme jusqu'a la fin )
+head: selectionne les n premières lignes
+	head -n 10 -c mon-fichier
+	-c<number> : nombre de caractères à afficher
+sort: permet de trier les lignes
+	-o : ecrire le contenu du fichier dans un deuxième fichier
+	-u : elimine les lignes identiques
+	-r : trier en ordre inverse
+	-R : trier aléatoirement
+	-n : trier des nombres
+ln: permet de créer des liens entre les fichiers
+	lien phsyique : 2 fichier pointent vers un contenu
+	lien symbolique : 1 fichier pointe vers 1 autre fichier qui point vers le contenu
+	exemple : ln fich1 fich2
+	pour le lien symbolique on rajouter l'argument s
+	exemple : ln -s fich1 fich2
+
+/!\ find / locate pour chercher des fichiers
+
+#################################################################
+################## regular expressions ##########################
+#################################################################
+
+
+*: n'importe quelle séquence de caractère
+?: n'importe quel caractère
+[]: n'importe quel caractère choisi dans les caractères donnés entre crochets
+[^]: n'imp quel carac sauf ceux entre crochets /!\ : différence entre placé après ou avant
+[-]: n'imp quel carac dans la plage donnée entre crochets
+
+// Concaténation
+caractères spéciaux : 
+	grep: ,
+	|: Ou logiqe, l'expression située avant ou après doit apparaitre,
+	(...): groupement de caractères, 
+	[...]: Un caractère à cette position parmi ceux indiqués, 
+	.: caractère quelconque, 
+	^: /!\ : différence entre placé après ou avant, différence entre intérieur et extérieur
+		// exemple: ^text, element qui commence avec texte
+	$:,
+	\: exige la fin d'une chaine de caractère,
+
+// Quantification
+caractères spéciaux:
+	+: S+ => S SS SSS SSS..,
+	*: S* => rien S SS SSS SSS..,
+	?: S? => S ou rien,
+	{n}: il apparait exactement n fois,
+	{n,}: il apparait n fois ou plus,
+	{n,m}: il apparait entre n et m fois
+	(): pour le groupage // exemple: (FST|smi){2} va faire les combinaisons possible entre FST et smi
+	\n: comme un "AND" logic // exemple: (FST|smi)\1 va faire smismi ou FSTFST
+
+
+// La commande grep: Elle permet de faire de la recherche d'une chaine de caractère dans un fichier
+	Arguments:
+		-v: afficher les lignes qui ne correspondent pas au critère
+		-c: retourner le nombre de lignes qui correspond au critère
+		-i: Ne pas tenir en compte la casse
+		-n: chaque ligne trouvée est retournée avec son numéro de ligne
+		-l: lister uniquement les noms de fichiers qui correspondent au critère
+		-a: traiter un fichier binaire comme s'il s'agissait de texte
+		-r, recursive: 
+	// exemple: grep <ce que je cherche> <nom du fichier>
+
+// Différence entre grep et find
+find: sert à parcourir l'arborescence pour la recherche d'un fichier
+grep: sert à chercher la chaine de caractère qui lui est spécifiée dans les fichiers donnés en argument
+
