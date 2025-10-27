@@ -1,0 +1,13 @@
+pour la création de la base de données selon le format du date dans votre
+machine
+(08/12/22 ou 08-DEC-22)
+pour vérifier le format, utiliser la commande:
+select sysdate from dual;
+
+vous allez exécuter le script selon le format, pour exécuter:
+ SQL>ed f1
+après avoir coller le script, passer à l'exécution 
+SQL>@ f1
+après avoir exécuter votre script, vérifier l'utilisateur
+courant, vous devez avoir u2
+SQL> show user
