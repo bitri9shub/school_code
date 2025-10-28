@@ -3,11 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct cel
+typedef struct cell
 {
     int value;
-    struct cel* next;
+    struct cell* next;
 } cellule;
+
+cellule* initialize_cell(int);
+cellule* add_head(cellule*,int);
+cellule* add_tail(cellule*, int);
+void read_cell(cellule*);
+void read_list(cellule*);
 
 
 #endif // HEADERS_H_INCLUDED
