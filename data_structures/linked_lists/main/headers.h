@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct cel
+{
+    int value;
+    struct cel* next;
+} cellule;
 
 
 #endif // HEADERS_H_INCLUDED
