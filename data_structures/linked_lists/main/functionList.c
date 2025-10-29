@@ -2,7 +2,7 @@
 
 // Passage par valeurs
 
-cellule* initialize_cell(int v)
+cellule* initialize_cell_by_value(int v)
 {
     cellule* new_cell;
     new_cell = (cellule*) malloc(sizeof(cellule));
@@ -11,23 +11,60 @@ cellule* initialize_cell(int v)
     return new_cell;
 }
 
-cellule* add_head(cellule* head, int v)
+cellule* add_head_by_value(cellule* head, int v)
 {
-    cellule* new_cell = initialize_cell(v);
+    cellule* new_cell = initialize_cell_by_value(v);
     new_cell->next = head;
     head = new_cell;
     return head;
 }
 
-cellule* add_tail(cellule* head, int v)
+cellule* add_tail_by_value(cellule* head, int v)
 {
     cellule* temp_head = head;
     while(head->next != NULL)
     {
         head = head->next;
     }
-    cellule* new_cell = initialize_cell(v);
+    cellule* new_cell = initialize_cell_by_value(v);
     head->next = new_cell;
+    return temp_head;
+}
+
+int search_index_by_value(cellule* head, int v)
+{
+    int count = 0;
+    while(head != NULL)
+    {
+        count++;
+        if(head->value == v)
+        {
+            return count;
+        }else if (head->next != NULL)
+        {
+            head = head->next;
+        }else
+        {
+            return -1;
+        }
+    }
+}
+
+cellule* delete_cell_value_by_value(cellule* head, int v)
+{
+    cellule* temp_head = head;
+    int isCellExists = search_index_by_value(head, v);
+    if(isCellExists != -1)
+    {
+        while(head->next != NULL)
+        {
+            if(head->next->value == v)
+            {
+                head->next = head->next->next;
+            }
+            head = head->next;
+        }
+    }
     return temp_head;
 }
 

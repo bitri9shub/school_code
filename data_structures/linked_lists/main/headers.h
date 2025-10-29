@@ -9,9 +9,11 @@ typedef struct cell
     struct cell* next;
 } cellule;
 
-cellule* initialize_cell(int);
-cellule* add_head(cellule*,int);
-cellule* add_tail(cellule*, int);
+cellule* initialize_cell_by_value(int);
+cellule* add_head_by_value(cellule*,int);
+cellule* add_tail_by_value(cellule*, int);
+cellule* delete_cell_value_by_value(cellule*, int);
+int search_index_by_value(cellule*, int);
 void read_cell(cellule*);
 void read_list(cellule*);
 
