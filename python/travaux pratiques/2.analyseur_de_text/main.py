@@ -71,15 +71,22 @@ def less_used_words(fileName):
             less_used.append(index)
     return less_used
 
+def palyndrom_list(fileName):
+    words_list = word_frequency(fileName)
+    palyndroms = []
+    for word in words_list:
+        if word == word[::-1]:
+            palyndroms.append(word)
+    return palyndroms
+
 while True:
     choix = int(input("""
-        1. Créer un fichier
-        2. Ecrire dans un fichier
-        3. Lire un fichier
-        4. Analyser un fichier
-        5. Supprimer un fichier
-        6. Quitter
-                  
+1. Créer un fichier
+2. Ecrire dans un fichier
+3. Lire un fichier
+4. Analyser un fichier
+5. Supprimer un fichier
+6. Quitter\n          
     """))
     match(choix):
         case 1:
@@ -107,15 +114,14 @@ while True:
             fileName = input("Donner le nom d'un fichier: ")
             while True:
                 choix = int(input("""
-                    1. Fréquence des mots
-                    2. Longueur moyenne des mots
-                    3. Mots les plus/moins utilisés
-                    4. Detection des palyndromes
-                    5. Longueur des phrases
-                    6. Type de ponctuations utilisées
-                    7. Statistiques par type de mot    
-                    8. Quitter
-                                                  
+1. Fréquence des mots
+2. Longueur moyenne des mots
+3. Mots les plus/moins utilisés
+4. Detection des palyndromes
+5. Longueur des phrases
+6. Type de ponctuations utilisées
+7. Statistiques par type de mot    
+8. Quitter\n                                 
                 """))
                 match(choix):
                     case 1:
@@ -123,10 +129,10 @@ while True:
                     case 2:
                         print(f'Longueure moyenne des mots: {word_mean_length(fileName)}.')
                     case 3:
-                        print(f'Les mots les plus utilisés {most_used_words(fileName)}.')
-                        print(f'Les mots les moins utilisés {less_used_words(fileName)}.')
+                        print(f'Les mots les plus utilisés: {most_used_words(fileName)}.')
+                        print(f'Les mots les moins utilisés: {less_used_words(fileName)}.')
                     case 4:
-                        print()
+                        print(f'La liste des palyndromes: {palyndrom_list(fileName)}')
                     case 5:
                         print()
                     case 6:
@@ -135,8 +141,6 @@ while True:
                         print()
                     case 8:
                         break
-
-            
         case 5:
             fileName = input("Donner le nom d'un fichier: ")
             delete_file(fileName)
