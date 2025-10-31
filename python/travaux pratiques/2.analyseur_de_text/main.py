@@ -48,12 +48,28 @@ def calculate_word_occurence(word_list):
 def most_used_words(fileName):
     word_list = word_frequency(fileName)
     occurences = calculate_word_occurence(word_list)
+    most_used = []
+    max = 1
+    for valeur in occurences.values():
+        if valeur > max:
+            max = valeur
     for index, valeur in occurences.items():
-        print(index, valeur)
-        
+        if max == valeur:
+            most_used.append(index)
+    return most_used
 
 def less_used_words(fileName):
     word_list = word_frequency(fileName)  
+    occurences = calculate_word_occurence(word_list)
+    less_used = []
+    min = 1
+    for valeur in occurences.values():
+        if valeur < min:
+            min = valeur
+    for index, valeur in occurences.items():
+        if min == valeur:
+            less_used.append(index)
+    return less_used
 
 while True:
     choix = int(input("""
@@ -108,6 +124,7 @@ while True:
                         print(f'Longueure moyenne des mots: {word_mean_length(fileName)}.')
                     case 3:
                         print(f'Les mots les plus utilisés {most_used_words(fileName)}.')
+                        print(f'Les mots les moins utilisés {less_used_words(fileName)}.')
                     case 4:
                         print()
                     case 5:
