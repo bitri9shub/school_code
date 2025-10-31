@@ -20,7 +20,12 @@ def delete_file(fileName):
 def sentence_frequency(fileName):
     with open(f'{fileName}.txt', 'r') as file:
         content = file.readline()
-        return content.split(';')
+        senteces = content.split(';')
+        filtered_sentences = []
+        for sentence in senteces:
+            if sentence:
+                filtered_sentences.append(sentence)
+        return filtered_sentences
 
 def word_frequency(fileName):
     sentences = sentence_frequency(fileName)
@@ -79,6 +84,11 @@ def palyndrom_list(fileName):
             palyndroms.append(word)
     return palyndroms
 
+def words_frequency_in_sentences(fileName):
+    sentences_list = sentence_frequency(fileName)
+    for sentence in sentences_list:
+        print(f'"{sentence}" has {len(sentence)} words.')
+
 while True:
     choix = int(input("""
 1. Créer un fichier
@@ -134,7 +144,7 @@ while True:
                     case 4:
                         print(f'La liste des palyndromes: {palyndrom_list(fileName)}')
                     case 5:
-                        print()
+                        words_frequency_in_sentences(fileName)
                     case 6:
                         print()
                     case 7:

@@ -18,3 +18,7 @@
 #     if word == word[::-1]:
 #         palyndroms.append(word)
 # print(palyndroms)
+
+sentences_list= ['ceci est une phrase', 'ceci est une autre autre', 'ceci est une troisieme phrase']
+for sentence in sentences_list:
+        print(f'"{sentence}" has {len(sentence)} words.')
