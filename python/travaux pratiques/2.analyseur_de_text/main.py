@@ -1,88 +1,137 @@
 import os 
 
 def create_file(fileName):
-    f = open(f'{fileName}.txt', 'x') 
-    f.close()
+    try:
+        f = open(f'{fileName}.txt', 'x') 
+        f.close()
+        print(f"File '{fileName}.txt' created successfully.")
+    except FileExistsError:
+        print(f"File '{fileName}.txt' already exists.")
 
 def write_file(fileName):
-    sentence = input('Donner une phrase: ')
-    sentence += ";"
-    with open(f'{fileName}.txt', 'a') as file:
-        file.write(sentence)
+    try:
+        sentence = input('Donner une phrase: ')
+        sentence += ";"
+        with open(f'{fileName}.txt', 'a') as file:
+            file.write(sentence)
+    except FileNotFoundError:
+        print(f"File '{fileName}.txt' not found. Please create it first.")
 
 def read_file(fileName):
-    with open(f'{fileName}.txt', 'r') as file:
-        print(file.readline())
+    try:
+        with open(f'{fileName}.txt', 'r') as file:
+            print(file.readline())
+    except FileNotFoundError:
+        print(f"File '{fileName}.txt' not found.")
 
 def delete_file(fileName):
-    os.remove(f'{fileName}.txt')
+    try:
+        os.remove(f'{fileName}.txt')
+        print(f"File '{fileName}.txt' deleted successfully.")
+    except FileNotFoundError:
+        print(f"File '{fileName}.txt' not found.")
 
 def sentence_frequency(fileName):
-    with open(f'{fileName}.txt', 'r') as file:
-        content = file.readline()
-        senteces = content.split(';')
-        filtered_sentences = []
-        for sentence in senteces:
-            if sentence:
-                filtered_sentences.append(sentence)
-        return filtered_sentences
+    try:
+        with open(f'{fileName}.txt', 'r') as file:
+            content = file.readline()
+            sentences = content.split(';')
+            filtered_sentences = []
+            for sentence in sentences:
+                if sentence.strip(): 
+                    filtered_sentences.append(sentence.strip())
+            return filtered_sentences
+    except FileNotFoundError:
+        print(f"File '{fileName}.txt' not found.")
+        return []
 
 def word_frequency(fileName):
     sentences = sentence_frequency(fileName)
-    unflaterned_words = [sentence.split(" ") for sentence in sentences]
-    words = [element for i in range(len(unflaterned_words)) for element in unflaterned_words[i]]
-    filtred_words = [word for word in words if word]
-    return filtred_words
+    if not sentences:
+        return []
+    
+    unflattened_words = [sentence.split(" ") for sentence in sentences]
+    words = [element for sublist in unflattened_words for element in sublist]  
+    filtered_words = [word.strip() for word in words if word.strip()]  # Added strip()
+    return filtered_words
 
 def word_mean_length(fileName):
     word_list = word_frequency(fileName)
+    if not word_list:
+        return 0
+    
     total_length = 0
     for word in word_list:
         total_length += len(word)
     return total_length / len(word_list)
 
 def calculate_word_occurence(word_list):
+    word_list = word_frequency(fileName)
+    if not word_list:
+        return 0
+    
+    total_length = 0
+    for word in word_list:
+        total_length += len(word)
+    return total_length / len(word_list)
+
+def calculate_word_occurence(fileName):
+    word_list = word_frequency(fileName)
+    if not word_list:
+        return [{}, [], []]
+
     occur_obj = {}
     for word in word_list:
-        if(word not in occur_obj):
+        if word not in occur_obj:
             occur_obj[word] = 1
         else:
             occur_obj[word] += 1
-    return occur_obj
 
-def most_used_words(fileName):
-    word_list = word_frequency(fileName)
-    occurences = calculate_word_occurence(word_list)
-    most_used = []
-    max = 1
-    for valeur in occurences.values():
-        if valeur > max:
-            max = valeur
-    for index, valeur in occurences.items():
-        if max == valeur:
-            most_used.append(index)
-    return most_used
+    # Find most used words
+    if occur_obj:
+        max_count = max(occur_obj.values())
+        most_used = [word for word, count in occur_obj.items() if count == max_count]
+        
+        # Find least used words
+        min_count = min(occur_obj.values())
+        less_used = [word for word, count in occur_obj.items() if count == min_count]
+    else:
+        most_used = []
+        less_used = []
 
-def less_used_words(fileName):
-    word_list = word_frequency(fileName)  
-    occurences = calculate_word_occurence(word_list)
-    less_used = []
-    min = 1
-    for valeur in occurences.values():
-        if valeur < min:
-            min = valeur
-    for index, valeur in occurences.items():
-        if min == valeur:
-            less_used.append(index)
-    return less_used
+    return [occur_obj, most_used, less_used]
+
+# def most_used_words(fileName):
+#     word_list = word_frequency(fileName)
+#     occurences = calculate_word_occurence(word_list)
+#     most_used = []
+#     max = 1
+#     for valeur in occurences.values():
+#         if valeur > max:
+#             max = valeur
+#     for index, valeur in occurences.items():
+#         if max == valeur:
+#             most_used.append(index)
+#     return most_used
+
+# def less_used_words(fileName):
+#     word_list = word_frequency(fileName)  
+#     occurences = calculate_word_occurence(word_list)
+#     less_used = []
+#     min = 1
+#     for valeur in occurences.values():
+#         if valeur < max:
+#             max = valeur
+#     for index, valeur in occurences.items():
+#         if min == valeur:
+#             less_used.append(index)
+#     return less_used
 
 def palyndrom_list(fileName):
-    words_list = word_frequency(fileName)
-    palyndroms = []
-    for word in words_list:
-        if word == word[::-1]:
-            palyndroms.append(word)
-    return palyndroms
+    sentences_list = sentence_frequency(fileName)
+    for sentence in sentences_list:
+        words = sentence.split()
+        print(f'"{sentence}" has {len(words)} words.')
 
 def words_frequency_in_sentences(fileName):
     sentences_list = sentence_frequency(fileName)
@@ -139,8 +188,9 @@ while True:
                     case 2:
                         print(f'Longueure moyenne des mots: {word_mean_length(fileName)}.')
                     case 3:
-                        print(f'Les mots les plus utilisés: {most_used_words(fileName)}.')
-                        print(f'Les mots les moins utilisés: {less_used_words(fileName)}.')
+                        statistics = calculate_word_occurence(fileName)
+                        print(f'Les mots les plus utilisés: {statistics[1]}.')
+                        print(f'Les mots les moins utilisés: {statistics[2]}.')
                     case 4:
                         print(f'La liste des palyndromes: {palyndrom_list(fileName)}')
                     case 5:
