@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1761757477 source:c:\users\hp\desktop\school_code\data_structures\linked_lists\main\main.c
+1761993680 source:c:\users\hp\desktop\school_code\data_structures\linked_lists\main\main.c
 	"headers.h"
 
-1761756381 c:\users\hp\desktop\school_code\data_structures\linked_lists\main\headers.h
+1761993666 c:\users\hp\desktop\school_code\data_structures\linked_lists\main\headers.h
 	<stdio.h>
 	<stdlib.h>
 
-1761757453 source:c:\users\hp\desktop\school_code\data_structures\linked_lists\main\functionlist.c
+1761993274 source:c:\users\hp\desktop\school_code\data_structures\linked_lists\main\functionlist.c
 	"headers.h"
 

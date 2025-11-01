@@ -87,3 +87,20 @@ void read_list(cellule* head)
     }
     while(head != NULL);
 }
+
+// Passage par adresse
+void initialize_cell_by_address(cellule** new_cell, int v)
+{
+    *new_cell = (cellule*) malloc(sizeof(cellule));
+    (*new_cell)->value = v;
+    (*new_cell)->next = NULL;
+}
+//
+
+void add_head_by_address(cellule** head, int v)
+{
+    cellule* new_cell;
+    initialize_cell_by_address(&new_cell, v);
+    new_cell->next = *head;
+    *head = new_cell;
+}
