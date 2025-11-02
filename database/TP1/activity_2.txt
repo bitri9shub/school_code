@@ -1,20 +1,3 @@
-Activité 1 : familiarisation avec l’environnement SQL
-1. Afficher la date courante ?
-2. Affichez la structure de la table Dept. Sélectionnez toutes les données
-de la table Dept.
-3. Affichez la structure de la table Emp. Créez une requête pour afficher
-le nom (), le poste (), la date d&#39;embauche () et le matricule () de
-chaque employé, en plaçant le matricule en premier ?
-4. Affichez le nom de chaque employé concaténé avec le salaire en les
-séparant par la chaine de caractères « a un salaire de », puis donnez
-comme titre à la colonne Employe avec son salaire.
-5. Créez une requête pour afficher toutes les données de la table Dept
-dans une seule colonne d&#39;affichage. Séparez chaque colonne par une
-virgule. Nommez la colonne d&#39;affichage THE_OUTPUT.
-
-
-
-
 Activité 2 : Sélection et Tri des lignes Retournées
 1. Affichez le nom, le poste et la date d&#39;entrée des employés embauchés
 entre le 20 février 2010 et le 1 mai 2012. Classez le résultat par date

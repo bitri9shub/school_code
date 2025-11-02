@@ -1,0 +1,23 @@
+Activité 1 : familiarisation avec l’environnement SQL
+1. Afficher la date courante ?
+2. Affichez la structure de la table Dept. Sélectionnez toutes les données
+de la table Dept.
+3. Affichez la structure de la table Emp. Créez une requête pour afficher
+le nom (), le poste (), la date d'embauche () et le matricule () de
+chaque employé, en plaçant le matricule en premier ?
+4. Affichez le nom de chaque employé concaténé avec le salaire en les
+séparant par la chaine de caractères « a un salaire de », puis donnez
+comme titre à la colonne Employe avec son salaire.
+5. Créez une requête pour afficher toutes les données de la table Dept
+dans une seule colonne d'affichage. Séparez chaque colonne par une virgule. 
+Nommez la colonne d'affichage THE_OUTPUT.
+
+1. SELECT sysdate FROM dual;
+2.
+	2.1. DESCRIBE dept;
+	2.2. SELECT * FROM dept;
+3.
+	3.1. DESCRIBE emp;
+	3.2. SELECT empno, ename, job, hiredate FROM emp;
+4. SELECT ename || ' a un salaire de ' || sal AS "Employe avec son salaire" FROM emp;
+5. SELECT deptno||','||dname||','||loc AS "THE_OUTPUT" FROM dept;
