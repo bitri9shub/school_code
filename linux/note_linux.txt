@@ -1,76 +1,59 @@
-gedit: permet de créer un fichier et d'éditer son contenu
-cat: permet d'afficher le contenu d'un fichier
-	argument -n : permet de rajouter le nombre des lignes
-cut: permet d'afficher des zones spécifiques d'un fichier
-	-c : Permet de sélectionner les colonnes
-	-d : Permet de sélectionner les séparateurs de champ
-	-f : indique numéro de champs à afficher
-tail: selectionne les lignes à partir de la fin -10 ( 10 derniere ) +10 ( depuis la 10 eme jusqu'a la fin )
-head: selectionne les n premières lignes
-	head -n 10 -c mon-fichier
-	-c<number> : nombre de caractères à afficher
-sort: permet de trier les lignes
-	-o : ecrire le contenu du fichier dans un deuxième fichier
-	-u : elimine les lignes identiques
-	-r : trier en ordre inverse
-	-R : trier aléatoirement
-	-n : trier des nombres
-ln: permet de créer des liens entre les fichiers
-	lien phsyique : 2 fichier pointent vers un contenu
-	lien symbolique : 1 fichier pointe vers 1 autre fichier qui point vers le contenu
-	exemple : ln fich1 fich2
-	pour le lien symbolique on rajouter l'argument s
-	exemple : ln -s fich1 fich2
+// Manipulation des fichiers et des répertoires :
+pwd affiche le répertoire courant
+cd rep se place dans le répertoire rep
+cd se place dans le répertoire de l'utilisateur ~/
+cd .. se place dans le répertoire parent
+ls rep liste les fichiers du répertoire rep
+ls -a ls avec les fichiers cachés
+ls -l ls avec les droits d'accès et la taille
+mv source cible déplace le fichier source vers cible
+cp source cible copie le fichier source vers cible
+cp -R source cible copie le répertoire source vers cible
+ln source lien créer un lien fort de source vers lien
+ln -s source lien créer un lien symbolique de source vers lien
+touch file créer le fichier file ou met à jour sa date de
+mkdir rep créer un répertoire rep
+mkdir -p rep/rep2 mkdir avec création du rep parent si nécessaire
+rm file supprime le fichier file
+rm -f file supprime le fichier file protégé en écriture
+rmdir rep supprimer un répertoire vide
+rm -R rep supprime un répertoire
+du -h file ou rep affiche la taille de file ou du répertoire rep
 
-/!\ find / locate pour chercher des fichiers
+// Manipulation du contenu des fichiers
+wc fichier compte le nombre de lignes, de mots, d'octets de fichier
+cat fichiers concatène les fichiers
+more fichier affiche fichier page après page 'Espace'=page suivante, 'Entrée'=ligne
+suivante, 'u'=remonter
+less fichier affiche *fichier* avec une navigation au clavier
+head -n x fichier affiche les x premières lignes de fichier
+tail -n x fichier affiche les x dernières lignes de fichier
+tail -f fichier affiche la dernière ligne de fichier en temps réel
+diff file1 file2 affiche les différences entre deux fichiers texte
+diff -u file1 file2 affiche les différences au format patch
+comp file1 file2 compare deux fichiers binaires
+comp file1 file2 n N compare deux fichiers, file1 à partir du nième octet, et *file2* à partir du **N**ième
 
-#################################################################
-################## regular expressions ##########################
-#################################################################
-
-
-*: n'importe quelle séquence de caractère
-?: n'importe quel caractère
-[]: n'importe quel caractère choisi dans les caractères donnés entre crochets
-[^]: n'imp quel carac sauf ceux entre crochets /!\ : différence entre placé après ou avant
-[-]: n'imp quel carac dans la plage donnée entre crochets
-
-// Concaténation
-caractères spéciaux : 
-	grep: ,
-	|: Ou logiqe, l'expression située avant ou après doit apparaitre,
-	(...): groupement de caractères, 
-	[...]: Un caractère à cette position parmi ceux indiqués, 
-	.: caractère quelconque, 
-	^: /!\ : différence entre placé après ou avant, différence entre intérieur et extérieur
-		// exemple: ^text, element qui commence avec texte
-	$:,
-	\: exige la fin d'une chaine de caractère,
-
-// Quantification
-caractères spéciaux:
-	+: S+ => S SS SSS SSS..,
-	*: S* => rien S SS SSS SSS..,
-	?: S? => S ou rien,
-	{n}: il apparait exactement n fois,
-	{n,}: il apparait n fois ou plus,
-	{n,m}: il apparait entre n et m fois
-	(): pour le groupage // exemple: (FST|smi){2} va faire les combinaisons possible entre FST et smi
-	\n: comme un "AND" logic // exemple: (FST|smi)\1 va faire smismi ou FSTFST
+// Utilisateurs
+whoami affiche le login de l'utilisateur
+who affiche les utilisateurs connectés
+id afficher les uid, gid et groupes de l'utilisateur
+id user afficher les uid, gid et groupes de user (root only)
+finger user affiche les informations de user
+write user afficher un message sur le terminal de user
+tty afficher le nom de son terminal
+su – sudo passer en mode administrateur, super-utilisateur
+passwd changer le mot de passe de l'utilisateur courant
+adduser ajouter un utilisateur
+deluser supprime un utilisateur
+addgroup ajoute un groupe
+delgroup supprime un groupe
 
 
-// La commande grep: Elle permet de faire de la recherche d'une chaine de caractère dans un fichier
-	Arguments:
-		-v: afficher les lignes qui ne correspondent pas au critère
-		-c: retourner le nombre de lignes qui correspond au critère
-		-i: Ne pas tenir en compte la casse
-		-n: chaque ligne trouvée est retournée avec son numéro de ligne
-		-l: lister uniquement les noms de fichiers qui correspondent au critère
-		-a: traiter un fichier binaire comme s'il s'agissait de texte
-		-r, recursive: 
-	// exemple: grep <ce que je cherche> <nom du fichier>
-
-// Différence entre grep et find
-find: sert à parcourir l'arborescence pour la recherche d'un fichier
-grep: sert à chercher la chaine de caractère qui lui est spécifiée dans les fichiers donnés en argument
-
+// Recherche
+locate motif recherche sur un nom correspond au motif
+updatedb mettre à jour la base de données de locate
+find chemin options recherche les fichiers dans chemin avec option
+find -name motif recherche sur le nom du fichier
+find -type f/d/l recherche par type où f=fichier,d=répertoire,l=lien
+find -exec cmd exécute la commande cmd à tous les fichiers trouvés

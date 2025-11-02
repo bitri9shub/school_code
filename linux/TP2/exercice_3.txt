@@ -1,0 +1,17 @@
+Exercice 3 :
+Nous allons utiliser le fichier /etc/passwd pour se familiariser avec les commandes sort, cut,
+wc, tr et split. Ces commandes peuvent être utilisées avec des sorties de commandes ou des
+fichiers tabulés tels que /etc/passwd. La structure du fichier est explicitée ci-dessous :
+1. Compter le nombre de ligne du fichier passwd
+2. Afficher les 15 premières lignes du fichier
+3. Afficher les 15 dernières lignes du fichier
+4. Trier les lignes du fichier passwd sur le premier champs (nom d’utilisateur) par ordre
+alphabétique croissant puis décroissant (le délimitateur dans le fichier est le caractère ‘:’)
+5. Trier les lignes du fichier passwd par « group ID »(ordre décroissant) et par « user ID »
+(ordre croissant)
+6. Extraire uniquement les 4 premiers champs du fichier /etc/passwd.
+7. Extraire le nom de l’utilisateur, son group et son répertoire de travail.
+8. Convertir les lignes en minuscules en majuscules (ne pas oublier le signe < avant le nom
+du fichier)
+9. Afficher le fichier /etc/passwd en contrôlant le défilement écran par écran (tester avec
+more puis avec less).

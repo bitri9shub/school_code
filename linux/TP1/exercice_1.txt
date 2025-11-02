@@ -1,0 +1,26 @@
+Exercice : 1
+Des fichiers se sont accumulés dans votre répertoire personnel. Vous avez décidé de mettre de
+l’ordre dans votre compte. Vous prévoyez de créer plusieurs sous-répertoires et de copier et
+déplacer vos fichiers selon votre organisation. Vous possédez également plusieurs fichiers
+inutiles qui doivent être supprimés.
+1. Vous devriez être dans votre répertoire personnel. Comment s’en rassurer.
+2. Vérifiez de 2 manières que vous possédez des fichiers sur votre répertoire personnel
+3. Affichez la taille des fichiers contenus dans votre répertoire personnel
+À ce point, on va créer des fichiers et une arborescence pour organiser des fichiers.
+4. Créez les fichiers vides suivants : graph_fev, graph_jan, graph_mar, rapport_fev,
+rapport_jan, rapport_mar
+5. Vérifiez pour examiner le résultat de la dernière commande.
+6. Pour organiser ces fichiers, on va créer de nouveaux répertoires. On désire disposer de
+l’arborescence « projets/graphs ». Citez deux manières pour le faire.
+7. Créer l’arborescence « projets/rapports »
+8. Déplacer vous au sein du répertoire « rapports » puis créer le répertoire « projets/copies »
+À partir de cette étape, on commencera à faire le ménage dans notre répertoire personnel en
+déplaçant les fichiers dans leur bon endroit.
+9. Lister le contenu du répertoire « projets »
+10. Déplacer en premier lieu le fichier « graph_jan » dans le sous-répertoire « graphs » puis
+par la suite déplacer d’un seul coup les 2 autres fichiers « graphs » restant dans le même
+répertoire.
+11. Vérifiez le contenu du sous-répertoire « graphs »
+12. Ensuite déplacez les deux fichiers « rapport_jan » et « rapport_fev » dans le répertoire «
+rapports » et supprimer le fichier « rapport_mar ».
+13. Créer des copies des fichiers du mois de Janvier dans le répertoire « copies » .

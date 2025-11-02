@@ -1,0 +1,14 @@
+Exercice 4 :
+1. Créer un lien physique sur le fichier liste appelé liste2.
+2. Avec l'éditeur de votre choix, modifier le fichier liste2 et constater que cette modification
+est prise en compte dans le fichier liste
+3. Constater l'existence de deux liens physiques.
+4. Supprimer le fichier liste et constater que le contenu du fichier liste2 est toujours
+accessible.
+5. Créer le lien symbolique liste3 sur le fichier liste2.
+6. Modifier le fichier liste2 et constater que cette modification est prise en compte dans le
+fichier liste3
+7. A partir de la commande ls -l, constater l'existence du lien symbolique.
+8. Supprimer le fichier liste2 et constater que le fichier liste3 existe toujours mais que son
+contenu n'est plus accessible.
+9. Recréer un nouveau fichier liste2 et constater qu'il est à nouveau accessible par liste3

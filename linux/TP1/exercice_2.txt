@@ -1,0 +1,22 @@
+Exercice : 2
+1. Créer dans votre répertoire personnel les fichiers selon l’arborescence suivante :
+Chaque question doit être répondue en une seule commande et le répertoire courant doit
+toujours être votre répertoire personnel :
+a. Créer deux répertoires Unix et HTML dans votre répertoire personnel.
+b. Créer deux répertoires TP1 et TP2 dans le répertoire Unix.
+c. Copier les deux répertoires TP1 et TP2 dans le répertoire HTML.
+d. Créer deux répertoires seance1 et seance2 dans le répertoire TP1 de Unix.
+e. Créer deux fichiers exo1 et exo2 dans le répertoire seance1.
+f. Copier les deux fichiers exo1 et exo2 dans le répertoire TP2 de HTML.
+2. Placez-vous dans le répertoire HTML/TP1. Vérifiez que vous y êtes, puis, en une seule
+commande, placez-vous dans le répertoire Unix/TP2 en utilisant le chemin relatif du
+répertoire. Retournez dans HTML/TP1, mais cette fois-ci, en utilisant le chemin absolu.
+Enfin, revenez à la racine de votre répertoire personnel.
+3. Supprimer le répertoire TP1 de HTML avec la commande rmdir.
+4. Supprimer le répertoire TP2 de HTML avec la commande rmdir, pourquoi la commande a
+échoué. Supprimer en une commande le répertoire TP2 de HTML.
+5. Déplacer le fichier exo1 dans le répertoire TP1 et supprimer les répertoires seance1 et
+seance2.
+6. Renommer les fichiers exo1 et exo2 en respectivement exercice1 et exercice2.
+7. Dessiner l’arborescence des fichiers contenus dans le répertoire personnel de manière
+théorique. Vérifier le à l’aide d’une commande.

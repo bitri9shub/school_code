@@ -1,0 +1,18 @@
+Exercice 2 : Find et Locate
+Dans votre home
+1. Chercher les fichiers qui ont été modifié, il y a plus de 30 jours ? Il y a 30 jours ? Il y a
+moins de 30 jours?
+2. Chercher les répertoires ?
+3. Lister tous les fichiers Critères noms commence par un ‘a’ majuscule ou minuscule
+4. Lister tous les fichiers ayant une extension .txt et ayant été modifiés plus récemment que
+le fichier a.txt.
+5. Lister tous les fichiers ayant une taille supérieure à 10 octets=80bits puis à
+10Ko=80Kilobit
+6. Lister tous les fichiers sur votre espace personnel ayant été modifiés il y a plus de 2 jours?
+7. Chercher les fichiers qui ont été modifié plus récemment qu'un autre fichier donné?
+8. Utiliser find pour effacer tous vos fichiers de sauvegarde (terminés par un tilde) qui ont
+plus d'un mois. (utiliser rm avec find)
+9. Visualiser le manuel des deux commandes find et locate. Quelle est la différence entre les
+deux commandes.
+10. Créer dans votre répertoire personnel un fichier file.txt. en utilisant la commande find puis
+locate chercher ce même fichier ? commentez le résultat.

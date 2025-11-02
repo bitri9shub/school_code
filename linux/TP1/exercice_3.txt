@@ -1,0 +1,34 @@
+Exercice : 3
+Répertoires et consultation de fichiers.
+1. Allez dans votre répertoire personnel.
+2. Créez un répertoire portant le nom de CommandesLinux.
+3. Allez dans votre répertoire CommandesLinux.
+4. Créez l'arborescence cours1/cours2/cours3/cours4.
+5. Listez le contenu du répertoire courant de façon récursive.
+6. Supprimez le répertoire cours1. Est-ce possible ?
+7. Supprimez l'arborescence de répertoire cours1/cours2/cours3/cours4, puis vérifiez en
+listant le répertoire de façon récursive.
+8. Allez dans le dossier Commandes Linux et créez les répertoires suivants :
+Code : .
+|--couleur
+|	`--froide
+`--forme
+	|--angle
+	`--courbe
+
+9. Copiez le fichier /etc/services dans votre répertoire Commandes Linux.
+10. À qui appartient le fichier que vous venez de copier ? Quelle est sa date de dernière
+modification ?
+11. Créez les fichiers ne contenant aucune donnée et dont les noms sont les suivants : rond.txt,
+triangle.txt, carre.txt, rectangle.txt, vert.txt et bleu.txt
+12. Déplacez le fichier rond.txt dans le répertoire courbe et les fichiers triangle.txt, carre.txt,
+rec-tangle.txt dans le répertoire angle.
+13. Déplacez les fichiers vert.txt et bleu.txt dans le répertoire froide.
+14. Allez dans le répertoire couleur et affichez le contenu du répertoire de façon récursive.
+15. Copier le répertoire sous le nom chaude. Est-ce possible ? Comment ?
+16. Allez dans le répertoire chaude et renommez le fichier bleu.txt en rouge.txt et vert.txt en
+jaune.txt.
+17. Remontez dans le répertoire Commandes Linux et renommez le répertoire couleur en
+peinture. Est-il besoin de spécifier une option particulière à la commande mv.
+18. Listez la totalité de l'arborescence contenue dans le répertoire Commande Linux.
+19. Affichez le contenu du fichier /etc/issue. Que contient-il ?

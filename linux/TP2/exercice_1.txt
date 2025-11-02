@@ -1,0 +1,11 @@
+Exercice 1:
+1. Dans votre répertoire courant, créez en une commande un répertoire appelé TP et mettez
+dedans les fichiers suivants : fiche1 fiche2 Fiche4 fiche45 fichier41 Fichier510 en utilisant
+la commande.
+2. Lister tous les fichiers
+a. se terminant par 1
+b. commençant par fiche4
+c. commençant par fiche4 et de 7 lettres maximum
+d. commençant par fiche et se terminant par 2 chiffres numériques
+e. contenant la chaîne « hier »
+f. commençant par f ou F
