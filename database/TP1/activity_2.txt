@@ -1,11 +1,11 @@
 Activité 2 : Sélection et Tri des lignes Retournées
-1. Affichez le nom, le poste et la date d&#39;entrée des employés embauchés
+1. Affichez le nom, le poste et la date d'entrée des employés embauchés
 entre le 20 février 2010 et le 1 mai 2012. Classez le résultat par date
-d&#39;embauche croissante ?
-2. Affichez le nom et la date d&#39;embauche de chaque employé entré en
+d'embauche croissante ?
+2. Affichez le nom et la date d'embauche de chaque employé entré en
 2010 ?
 3. Affichez le nom, le salaire et la commission de tous les employés qui
-perçoivent des commissions. Triez les données dans l&#39;ordre
+perçoivent des commissions. Triez les données dans l'ordre
 décroissant des salaires et des commissions ?
 4. Affichez le nom de tous les employés dont le nom contient deux T et
 travaillant dans le département 20 ou dont le manager est 7566 ?
@@ -14,7 +14,38 @@ commission/salaire ?
 6. Nom des vendeurs dont la commission est inférieure à 25% de leur
 salaire ?
 7. Créez une liste unique de tous les postes du département 30 ?
-8. Affichez le nom, le poste et le salaire de tous les &#39; CLERK&#39; ou
-&#39;ACCOUNT&#39; dont le salaire est différent de 1000, 3000 ou 5000 ?
+8. Affichez le nom, le poste et le salaire de tous les 'CLERK' ou
+'ACCOUNT' dont le salaire est différent de 1000, 3000 ou 5000 ?
 9. Afficher le nom, le salaire et la commission de tous les employés dont
 le montant de la commission est de plus de 10% supérieur au salaire ?
+
+1. SELECT ename, job, hiredate
+   FROM emp
+   WHERE hiredate BETWEEN '20/2/10' AND '1/5/12';
+2. SELECT ename, hiredate
+   FROM emp
+   WHERE hiredate LIKE '__/__/10';
+3. SELECT ename, sal, comm
+   FROM emp
+   ORDER BY sal DESC, comm DESC;
+4. SELECT ename
+   FROM emp
+   WHERE ename LIKE '%t%t%'
+   AND deptno = 20
+   OR mgr = 7566;
+5. SELECT ename
+   FROM emp
+   ORDER BY comm/sal DESC;
+6. SELECT ename
+   FROM emp
+   WHERE comm < sal*25/100;
+7. SELECT DISTINCT job
+   FROM emp
+   WHERE deptno = 30;
+8. SELECT ename, job, sal
+   FROM emp
+   WHERE job IN ('CLERK', 'ACCOUNT')
+   AND sal NOT IN (1000, 3000, 5000);
+9. SELECT ename, sal, comm
+   FROM emp
+   WHERE comm > sal*(100+10)/100;
