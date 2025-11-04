@@ -10,24 +10,18 @@ void initialize_node(node** new_node, int v)
 
 void insert_node(node** tree_header, int v)
 {
-    node* new_leaf;
-    if((*tree_header)->value > v)
+    if(*tree_header == NULL)
     {
-        if(!(*tree_header)->right_child)
-        {
-            tree_header = tree_header->right_child;
-        } else
-        {
-            (*tree_header)->right_child = initialize_node(&new_leaf, v);
-        }
-    } else if ((*tree_header)->value < v)
+        initialize_node(tree_header, v);
+        return;
+    }
+
+    if (v < (*tree_header)->value)
     {
-        if(!(*tree_header)->left_child)
-        {
-            tree_header = tree_header->left_child;
-        } else
-        {
-            tree_header->left_child = initialize_node(&new_leaf, v);
-        }
+        insert_node(&((*tree_header)->left_child), v);
+    }
+    else if (v > (*tree_header)->value)
+    {
+        insert_node(&((*tree_header)->right_child), v);
     }
 }

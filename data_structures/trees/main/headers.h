@@ -11,6 +11,6 @@ typedef struct node
 } node;
 
 void initialize_node(node**, int);
-void insert_node(node*, int);
+void insert_node(node**, int);
 
 #endif // HEADERS_H_INCLUDED

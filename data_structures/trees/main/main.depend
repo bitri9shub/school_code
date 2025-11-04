@@ -1,8 +1,11 @@
 # depslib dependency file v1.0
-1762278243 source:c:\users\hp\desktop\school_code\data_structures\trees\main\functions_list.c
+1762287386 source:c:\users\hp\desktop\school_code\data_structures\trees\main\functions_list.c
 	"headers.h"
 
-1762278695 c:\users\hp\desktop\school_code\data_structures\trees\main\headers.h
+1762279886 c:\users\hp\desktop\school_code\data_structures\trees\main\headers.h
 	<stdio.h>
 	<stdlib.h>
+
+1762287459 source:c:\users\hp\desktop\school_code\data_structures\trees\main\main.c
+	"headers.h"
 
