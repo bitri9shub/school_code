@@ -1,0 +1,66 @@
+Activité 1 : familiarisation avec l’environnement SQL
+1. Afficher la date courante ?
+2. Affichez la structure de la table Dept. Sélectionnez toutes les données de la table Dept.
+3. Affichez la structure de la table Emp. Créez une requête pour afficher le nom (), le poste (), la
+date d'embauche () et le matricule () de chaque employé, en plaçant le matricule en premier ?
+4. Affichez le nom de chaque employé concaténé avec le salaire en les séparant par la chaine de
+caractères « a un salaire de », puis donnez comme titre à la colonne Employe avec son salaire.
+5. Créez une requête pour afficher toutes les données de la table Dept dans une seule colonne
+d'affichage. Séparez chaque colonne par une virgule. Nommez la colonne d'affichage
+THE_OUTPUT.
+
+##########################################################################
+
+Activité 2 : Sélection et Tri des lignes Retournées
+1. Affichez le nom, le poste et la date d'entrée des employés embauchés entre le 20 février 2010
+et le 1 mai 2012. Classez le résultat par date d'embauche croissante ?
+2. Affichez le nom et la date d'embauche de chaque employé entré en 2010 ?
+3. Affichez le nom, le salaire et la commission de tous les employés qui perçoivent des
+commissions. Triez les données dans l'ordre décroissant des salaires et des commissions ?
+4. Affichez le nom de tous les employés dont le nom contient deux T et travaillant dans le
+département 20 ou dont le manager est 7566 ?
+5. Nom des vendeurs (SALES) par ordre décroissant du ratio commission/salaire ?
+6. Nom des vendeurs dont la commission est inférieure à 25% de leur salaire ?
+7. Créez une liste unique de tous les postes du département 30 ?
+8. Affichez le nom, le poste et le salaire de tous les ' CLERK' ou 'ACCOUNT' dont le salaire est
+différent de 1000, 3000 ou 5000 ?
+9. Afficher le nom, le salaire et la commission de tous les employés dont le montant de la
+commission est de plus de 10% supérieur au salaire ?
+
+###########################################################################
+
+Activité 3 : Fonctions Mono-Ligne
+1. Pour chaque employé, affichez le matricule, le nom, le salaire et le salaire augmenté de 15%
+sous la forme d'un nombre entier. Nommez cette colonne New Salary ?
+2. Modifiez votre requête en ajoutant une colonne dans laquelle l'ancien salaire est soustrait du
+nouveau salaire. Nommez cette colonne Increase. Exécutez à nouveau votre requête ?
+3. Affichez le nom de chaque employé et calculez le nombre de mois travaillés depuis la date
+d'embauche. Nommez la colonne MONTHS_WORKED. Classez les résultats en fonction du
+nombre de mois d'ancienneté. Arrondissez le nombre de mois à l'entier le plus proche.
+4. Ecrivez une requête affichant les informations suivantes pour chaque employé :
+<nom de l’employé> gagne <salaire> par mois, mais veut <3 fois son salaire>. Nommez la colonne
+Salaires de Rêve.
+5. Créez une requête pour afficher le nom et le salaire de tous les employés. Le salaire sera
+formaté de façon à avoir 15 caractères de long, la valeur du salaire étant complétée à gauche
+par des $. Nommez la colonne SALARY.
+6. Créez une requête pour afficher le nom et le montant de la commission de chaque employé.
+Pour les employés ne touchant aucune commission, affichez "No Commission". Nommez la
+colonne COMM.
+
+#############################################################################
+
+Activité 4 : les jointures
+1. Ecrivez une requête pour afficher le nom, le numéro de département et le nom de
+département de tous les employés ?
+2. Créez une liste unique de tous les postes du département 30 ?
+3. Ecrivez une requête pour afficher le nom, le nom du département et la localisation de tous
+les employés qui touchent une commission ?
+4. Affichez le nom et le nom du département pour tous les employés dont le nom contient la
+lettre A?
+5. Ecrivez une requête pour afficher le nom, le poste, le numéro de département et le nom du
+département de tous les employés basés à DALLAS.
+6. Affichez le nom et le matricule des employés et de leur manager. Nommez les colonnes
+Nom_Employee, Code_Employee, Nom_Manager, et Code_Manager, respectivement.
+7. Affichez les noms et date d'embauche des employés et de leur manager, pour tous les
+employés ayant été embauchés avant leur manager. Nommez les colonnes :
+Employee, Emp_Hiredate, Manager et Mgr_Hiredate, respectivement.

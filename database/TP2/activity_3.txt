@@ -1,0 +1,24 @@
+1.
+	SELECT deptno, ename, sal, TRUNC(sal*(1.15)) AS "New Salary" 
+	FROM emp;
+2.
+	SELECT deptno, ename, sal, trunc(sal*1.15) AS "New Salary", trunc(sal*1.15)-sal AS "Increase"
+	FROM emp;
+3.
+	SELECT 
+		deptno, 
+		ename, 
+		sal, 
+		trunc(sal*1.15) AS "New Salary", 
+		trunc(sal*1.15)-sal AS "Increase",
+		ROUND(MONTHS_BETWEEN(sysdate, hiredate)) AS "MONTHS_WORKES"
+	FROM emp;
+4.
+	SELECT ename||' gagne '||sal||' par mois, mais veut '|| 3*sal AS "Salaires de Rêve."
+	FROM emp;
+5.
+	SELECT ename, LPAD(sal, 15, '$') AS SALARY
+	FROM emp;
+6.
+	SELECT ename, NVL(TO_CHAR(COMM), 'No Commission')
+	FROM emp;
