@@ -1,0 +1,82 @@
+Créer un module Python capable de :
+
+1. gérer plusieurs salles dans différents fuseaux horaires,  
+2. enregistrer des réservations sur des périodes spécifiques,  
+3. appliquer des tarifs dynamiques selon divers critères,  
+4. détecter les conflits entre réservations en utilisant **UTC**,  
+5. empêcher l'annulation de réservations non-remboursables,  
+6. générer un rapport de revenus pour une période donnée.
+
+Classe Room
+
+
+Attributs :
+- name (str)  
+- base_price (float)  
+- capacity (int)  
+- timezone (str)  
+
+(ex: "Europe/Paris", "Africa/Casablanca", "America/New_York")  
+
+Contraintes :
+- Vérifier que le fuseau horaire est valide (zoneinfo ou pytz)  
+  o sinon lever InvalidTimezoneError.
+
+**Classe Reservation**
+
+Attributs :
+- room : objet Room  
+- start : datetime (dans le fuseau horaire de la salle)  
+- end : datetime (idem)  
+- client : str  
+- created_at : datetime  
+- final_price : float  
+- special_conditions : liste contenant éventuellement :  
+  o "VIP"  
+  o "last-minute"  
+  o "non-refundable"
+
+Règles :
+  • start < end obligatoire
+  • la conversion UTC doit permettre la comparaison entre réservations
+  • le prix final sera calculé par le système (classe BookingSystem)
+
+☐ **Classe BookingSystem**
+Méthodes à implémenter :
+1. add_room(room: Room)
+Ajoute une salle au système.
+2. make_reservation(room_name, start, end, client, special_conditions=None)
+  • Crée une réservation pour la salle donnée.
+  • Vérifie les collisions de dates en UTC.
+  • Calcule le prix final via calculate_price().
+  • Lève :
+    o ReservationConflictError si chevauchement
+    o InvalidTimezoneError si la salle a un fuseau invalide
+
+3. cancel_reservation(reservation_id)
+  • Supprime une réservation.
+  • Lève :
+    o CancellationNotAllowed si "non-refundable" est présent.
+4. **convertir la monnaie** (méthode extensible)  
+   → une méthode interne convert_currency(amount, currency="EUR")  
+   doit être prévue mais peut simplement retourner le même montant.  
+
+*(Hook pour extension)*
+
+5. **revenue_report(start_date, end_date)**  
+Retourne :  
+   - nombre total de réservations dans cet intervalle  
+   - revenu total généré (somme des final_price)
+
+---
+
+Algorithmique et Python IAGI – 2025  
+- répartition par salle  
+
+☐ **Exceptions personnalisées à créer**  
+- ReservationConflictError  
+- PriceCalculationError  
+- InvalidTimezoneError  
+- CancellationNotAllowed  
+
+Chaque exception doit contenir un message explicite.
