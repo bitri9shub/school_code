@@ -1,0 +1,29 @@
+1.
+cd ~
+mkdir essai-grep
+cd essai-grep
+touch tonate 3poire poire pomme cerise Fraise fraise courgette POMME3 affaise
+
+2. 
+a. ls | grep -E '^(Fraise|fraise)$'
+b. ls | grep 'se$'
+c. ls | grep 'ai'
+d. ls | grep '^[0-9]'
+e. ls | grep -v '[0-9]'
+f. ls | grep '^[Pp]'
+g. ls | grep -v '^c'
+h. ls | grep '^[aeiou]'
+i. ls | grep '^[a-gt]'
+j. ls | grep -v '^[aeiouAEIOU]'
+k. ls | grep -v '^[a-m]'
+l. ls | grep -v 'e$'
+m. ls | grep -ix 'fraise'
+
+3. 
+cp /etc/passwd .
+grep vboxuser passwd
+
+4. grep -v "`id -gn votre_utilisateur`" passwd
+5. grep -E ':[5][0-9][0-9]:' passwd
+6. grep -c '/bin/bash' passwd
+7. grep -E '^[^:]*a[^:]*a[^:]*:' passwd

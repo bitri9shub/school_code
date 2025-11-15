@@ -12,3 +12,16 @@ fichier liste3
 8. Supprimer le fichier liste2 et constater que le fichier liste3 existe toujours mais que son
 contenu n'est plus accessible.
 9. Recréer un nouveau fichier liste2 et constater qu'il est à nouveau accessible par liste3
+
+
+
+Réponse:
+1.ln liste liste2
+2.nano liste2 --- cat liste
+3.ls -li liste liste2
+4.rm liste --- cat liste2  --- ls -li liste2  
+5.ln -s liste2 liste3
+6.nano liste2 --- cat liste3
+7.ls -l liste3
+8.rm liste2 --- ls -l liste3 --- cat liste3    
+9.touch liste2 --- echo "Nouveau contenu" > liste2 --- cat liste3
