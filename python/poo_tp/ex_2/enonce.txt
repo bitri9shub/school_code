@@ -1,0 +1,13 @@
+Créer 3 classes:
+    - Account (classe parent)
+    - CheckingAccount (compte courant)
+    - SavingsAccount (compte épargne)
+Fontionnalités:
+    - deposit (amount)
+    - withdraw (amount)
+    - transfer(other_account, amount)
+    - calcul d'intérêts mensuels pour SavingsAccount
+Exceptions à gérer:
+    - InsufficientFundsError
+    - NegativeAmountError
+Ajouter un champ created_at(datetime)
