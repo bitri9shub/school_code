@@ -1,0 +1,30 @@
+1. cd ~
+2. mkdir CommandesLinux
+3. cd CommandesLinux
+4. mkdir -p cours1/cours2/cours3/cours4
+5. ls -R
+6. rmdir cours1
+7. rm -r cours1 --- ls -R
+8. mkdir -p couleur/froide forme angle courbe
+9. cp /etc/services .
+10. ls -l services
+11. touch rond.txt triangle.txt carre.txt rectangle.txt vert.txt bleu.txt
+12. 
+    mv rond.txt courbe/
+    mv triangle.txt carre.txt rectangle.txt angle/
+13. mv vert.txt bleu.txt couleur/froide/
+14.
+    cd couleur
+    ls -R   
+15. 
+    cd ..
+    cp -r couleur chaude
+16. 
+    cd chaude/froide
+    mv bleu.txt rouge.txt
+    mv vert.txt jaune.txt
+17. 
+    cd ../..
+    mv couleur peinture
+18. ls -R
+19. cat /etc/issue
