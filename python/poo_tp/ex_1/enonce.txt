@@ -1,0 +1,44 @@
+Implémenter deux classes (Robot et NGRobot) afin d'illuster:
+    - l'héritage
+    - la redéfinition de méthodes
+    - le polymorphisme
+    - la manipulation d'objets simples
+    - la gestion d'attributs privés/protégés
+
+Partie I - Classe Robot:
+
+Créer une classe Robot qui représente un robot se déplaçant sur un plan en deux dimensions.
+
+Attributs:
+    - Nom (chaîne)
+    - x (entier)
+    - y (entier)
+    - direction (chaîne parmi "N", "E", "S", "O")
+Par défaut:
+    - direction = "N"
+    - x = 0
+    - y = 0
+Méthodes:
+    1. avancer(): Déplace le robot d'une case selon sa direction
+        - Nord (N) -> y augmente
+        - Sud (S) -> y diminue
+        - Est (E) -> x augmente
+        - Ouest (O) -> x diminue
+    2. tourner_gauche(): Change la direction dans cet ordre: N -> O -> S -> E -> N
+    3. tourner_droite(): Change la direction dans l'ordre opposé: N -> E -> S -> O -> N
+    4. position(): Retourne une chaîne du type: "Robot R1 en position (x=2, y=5), direction N"
+
+Partie II - Classe NGRobot (héritage):
+
+Créer une classe NGRobot, héritant de Robot, qui représente un robot de nouvelle génération.
+Elle étend les fonctionnalités de Robot
+
+Ajouts/modifications demandés:
+    1. Ajouter un attribut vitesse: représente le nombre de cases parcourues par avancer()
+    valeur par défaut: 1
+    2. Redéfinir la méthode avancer(): Elle doit maintenant avancer de vitesse cases, selon 
+    la direction demandée
+    3. Ajouter une méthode accelerer(): augmente la vitesse de 1
+    4. Ajouter une méthode ralentir(): Diminue la vitesse de 1, sans jamais descendre sous 1
+    5. Ajouter une méthode avancer_multiple(n): Le robot avance n fois en utilisant sa méthode
+    avancer() redéfinie
