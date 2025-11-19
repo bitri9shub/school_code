@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1763313408 source:c:\users\hp\desktop\school_code\data_structures\td_linked_lists\ex1_recherche_element_max\main\main.c
+	"headers.h"
+
+1763313362 c:\users\hp\desktop\school_code\data_structures\td_linked_lists\ex1_recherche_element_max\main\headers.h
+	<stdio.h>
+	<stdlib.h>
+
+1763540778 source:c:\users\hp\desktop\github\school_code\data_structures\td_linked_lists\ex1_recherche_element_max\main\main.c
+	"headers.h"
+
+1763540729 c:\users\hp\desktop\github\school_code\data_structures\td_linked_lists\ex1_recherche_element_max\main\headers.h
+	<stdio.h>
+	<stdlib.h>
+
+1763540833 source:c:\users\hp\desktop\github\school_code\data_structures\td_linked_lists\ex1_recherche_element_max\main\functionlist.c
+	"headers.h"
+
