@@ -1007,17 +1007,20 @@ class MultiInterfaceApp:
             
             status_window = Toplevel(self.root)
             status_window.title("Changer le statut")
-            status_window.geometry("300x200")
+            status_window.geometry("350x300")
             status_window.transient(self.root)
             status_window.grab_set()
             
-            Label(status_window, text="Nouveau statut:", font=("Arial", 11, "bold")).pack(pady=20)
+            Label(status_window, text="Nouveau statut:", font=("Arial", 11, "bold")).pack(pady=15)
             
             status_var = StringVar(value=current_status)
             
+            radio_frame = Frame(status_window)
+            radio_frame.pack(pady=10)
+            
             for status in ["En attente", "En cours", "Terminée", "Annulée"]:
-                Radiobutton(status_window, text=status, variable=status_var, 
-                           value=status, font=("Arial", 10)).pack(anchor=W, padx=50)
+                Radiobutton(radio_frame, text=status, variable=status_var, 
+                           value=status, font=("Arial", 10)).pack(anchor=W, padx=50, pady=5)
             
             def confirm_change():
                 if Command.update_command_status(order_id, status_var.get()):
@@ -1027,8 +1030,16 @@ class MultiInterfaceApp:
                 else:
                     messagebox.showerror("Erreur", "Échec de la mise à jour")
             
-            Button(status_window, text="Confirmer", command=confirm_change, 
-                   bg="#27ae60", fg="white", width=15).pack(pady=20)
+            # Boutons
+            btn_frame = Frame(status_window)
+            btn_frame.pack(pady=25)
+            
+            Button(btn_frame, text="✓ Confirmer", command=confirm_change, 
+                   bg="#27ae60", fg="white", width=15, font=("Arial", 10, "bold"),
+                   cursor="hand2").pack(pady=5)
+            Button(btn_frame, text="✗ Annuler", command=status_window.destroy, 
+                   bg="#e74c3c", fg="white", width=15, font=("Arial", 9),
+                   cursor="hand2").pack(pady=5)
 
         action_frame = Frame(list_frame)
         action_frame.pack(pady=10)
