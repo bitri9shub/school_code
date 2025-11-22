@@ -6,11 +6,9 @@ from datetime import datetime
 
 # ============= PARTIE OUTILS =============
 def hash_password(password):
-    """Hasher le mot de passe avec SHA256"""
     return hashlib.sha256(password.encode()).hexdigest()
 
 def init_db():
-    """Initialiser la base de données avec toutes les tables"""
     db = connect("gestion.db")
     
     # Table User
@@ -62,7 +60,6 @@ def init_db():
     db.close()
 
 def create_user(username, firstName, lastName, password, role):
-    """Créer un nouvel utilisateur avec mot de passe hashé"""
     try:
         database = connect("gestion.db")
         hashed_pwd = hash_password(password)
@@ -76,7 +73,6 @@ def create_user(username, firstName, lastName, password, role):
         return False
 
 def authenticate_user(username, password):
-    """Authentifier un utilisateur"""
     try:
         database = connect("gestion.db")
         hashed_pwd = hash_password(password)
@@ -525,7 +521,7 @@ class MultiInterfaceApp:
             book_id = book_data[0]
             book_name = book_data[1]
             available_qty = book_data[4]
-            price = book_data[5]
+            price = float(book_data[5])  # Convertir en float
             
             if available_qty <= 0:
                 messagebox.showerror("Erreur", "Livre en rupture de stock")
@@ -534,7 +530,7 @@ class MultiInterfaceApp:
             # Dialogue pour la quantité
             qty_window = Toplevel(self.root)
             qty_window.title("Commander")
-            qty_window.geometry("300x200")
+            qty_window.geometry("350x320")
             qty_window.transient(self.root)
             qty_window.grab_set()
             

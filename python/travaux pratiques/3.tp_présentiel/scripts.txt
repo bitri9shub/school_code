@@ -1,0 +1,309 @@
+EX1:
+
+1.
+def unique_value(list):
+    temp = []
+    for element in list:
+        if element not in temp:
+            temp.append(element)
+    return temp
+
+print(unique_value([1,1,2,3,4,4,5,6,7,8]))
+
+2.
+filtred_list = unique_value(ex_list)
+filtred_tuple = tuple(filtred_list)
+print(f'le tuple: {filtred_tuple}')
+print(f'le max du tuple: {max(filtred_tuple)}')
+print(f'le min du tuple: {min(filtred_tuple)}')
+print(f'la somme du tuple: {sum(filtred_tuple)}')
+print(f'la moyenne du tuple: {sum(filtred_tuple)/len(filtred_tuple)}')
+
+3.
+def elemByElem_sum(list1: list):
+    list2 = [random.randint(1,100)for _ in range(len(list1))]
+
+    if len(list1) != len(list2):
+        raise ValueError("Les deux listes n'ont pas la même taille.")
+
+    somme = 0
+    for i in range(len(list1)):
+        somme += list1[i] + list2[i]
+    
+    return somme
+
+print(elemByElem_sum(ex_list))
+
+4.
+def cinq_plus_grands_elements(list1:list):
+    temp = []
+    for _ in range(5):
+        temp.append(max(list1))
+        list1.remove(max(list1))
+    return temp
+
+print(cinq_plus_grands_elements(ex_list))
+
+5.
+def comprehension_list(list1: list):
+    temp = []
+    if list1[0]>list1[1]:
+        temp.append(list1[1])
+    else:
+        temp.append(list1[0])
+
+    for i in range(1,len(list1)-1):
+        print(f'{list1[i]}, {list1[i+1]}')
+        if list1[i] < list1[i+1]:
+            temp.append(list1[i+1])
+        
+    return temp
+print(comprehension_list([10, 2, 3, 9, 4, 18, 5, 90]))
+
+6.
+def sorted_sublist(list1: list):
+    n = len(list1)
+    if n < 3:
+        return False    
+    count_asc = 1
+    for i in range(1, n):
+        if list1[i] > list1[i-1]:
+            count_asc += 1
+            if count_asc == 3:
+                return True
+        else:
+            count_asc = 1 
+    return False
+
+print(sorted_sublist([10, 2, 3, 9, 4, 18, 5, 90]))
+
+7.
+def is_list_palyndrom(list1: list):
+    n = len(list1)
+    for i in range(n // 2):
+        if list1[i] != list1[n - 1 - i]:
+            return False
+    return True
+print(is_list_palyndrom([0,0,1,0,0]))
+print(is_list_palyndrom([0,1,0,1,1]))
+
+
+EX2:
+1.
+students_dict = {
+    "0001": {
+        "nom": "ahmed",
+        "notes": [10, 12 ,15]
+    },
+    "0010": {
+        "nom": "karim",
+        "notes": [14, 12 ,18]
+    },
+    "0011": {
+        "nom": "Morad",
+        "notes": [8, 12 ,20]
+    },
+    "0100": {
+        "nom": "Said",
+        "notes": [19, 12 ,15]
+    }
+}
+
+2.
+def ajouter_etudiant(id: str, name: str, notes: list):
+    try:
+        students_dict[id] = {"nom": name, "notes": notes}
+    except:
+        raise ValueError("L'utilisateur existe déjà")
+
+def modifier_etudiant(id: str, name: str, notes: list):
+    try:
+        students_dict[id] = {"nom": name, "notes": notes}
+    except:
+        raise ValueError("L'utilisateur n'existe pas")
+
+def supprimer_etudiant(id: str):
+    try:
+        del students_dict[id]
+    except: 
+        raise ValueError("L'utilisateur n'existe pas")
+
+ajouter_etudiant("0111", "Achraf", [20,20,12])
+supprimer_etudiant("01002")
+
+3.
+def calcul_moyenne(id):
+    return sum(students_dict[id]["notes"]) / len(students_dict[id]["notes"])
+print(calcul_moyenne("0001"))
+
+4.
+def top_students():
+    temp = []
+    for id_student in students_dict.keys():
+        if calcul_moyenne(id_student) >= 14:
+            temp.append({students_dict[id_student]["nom"], calcul_moyenne(id_student)})
+    return temp
+
+print(top_students())
+
+5.
+inversed_dict = {}
+
+for id_student in students_dict.keys():
+    mean_student = int(calcul_moyenne(id_student))
+    try:
+        inversed_dict[mean_student].append(students_dict[id_student])
+    except:
+        inversed_dict[mean_student] = [students_dict[id_student]]
+print(inversed_dict)
+
+6.
+def students_with_dup_notes(students_dictionnary: dict):
+    temp = []
+    for student_id in students_dictionnary.keys():
+        for i in range(len(students_dictionnary[student_id]["notes"])):
+            for j in range(len(students_dictionnary[student_id]["notes"])):
+                if i!=j and students_dictionnary[student_id]["notes"][i] == students_dictionnary[student_id]["notes"][j] and (students_dictionnary[student_id]["nom"] not in temp):
+                    temp.append(students_dictionnary[student_id]["nom"])
+    return temp
+
+print(students_with_dup_notes(students_dict))
+
+7.
+def trier_etudiants(critere):
+    items_etudiants = list(students_dict.items())
+    
+    if critere == "nom":
+        items_etudiants.sort(key=lambda x: x[1]["nom"].lower())
+        
+    elif critere == "moyenne":
+        items_etudiants.sort(key=lambda x: calcul_moyenne(x[0]), reverse=True)
+        
+    elif critere == "nombre_notes":
+        items_etudiants.sort(key=lambda x: len(x[1]["notes"]), reverse=True)
+        
+    else:
+        print("Critère invalide. Choisissez: 'nom', 'moyenne', ou 'nombre_notes'")
+        return None
+
+    resultat = {}
+    for k, v in items_etudiants:
+        resultat[k] = v
+        
+    return resultat
+
+print(trier_etudiants("nom"))
+print(trier_etudiants("moyenne"))
+print(trier_etudiants("nombre_notes"))
+
+8.
+def fusionner_dictionnaires(dict1: dict, dict2: dict):
+    resultat = dict1.copy()
+
+    for id_student, info_dict2 in dict2.items():
+        if id_student not in resultat:
+            resultat[id_student] = info_dict2
+        else:
+            notes_dict1 = resultat[id_student]["notes"]
+            moy_dict1 = sum(notes_dict1) / len(notes_dict1) if len(notes_dict1) > 0 else 0
+
+            notes_dict2 = info_dict2["notes"]
+            moy_dict2 = sum(notes_dict2) / len(notes_dict2) if len(notes_dict2) > 0 else 0
+
+            if moy_dict2 > moy_dict1:
+                resultat[id_student] = info_dict2
+
+    return resultat
+students_dict2 = {
+    "0001": {"nom": "Ahmed", "notes": [18, 19, 20]},
+    "0100": {"nom": "Said", "notes": [2, 4, 5]},
+    "9999": {"nom": "Nouvel_Etudiant", "notes": [15, 15, 15]}
+}
+print(fusionner_dictionnaires(students_dict, students_dict2))
+
+EX3:
+import time
+import functools
+
+# 5. Le Décorateur
+def moniteur_performance(fonction):
+    @functools.wraps(fonction)
+    def enveloppe(*args, **kwargs):
+        debut = time.time()
+        resultat = fonction(*args, **kwargs)
+        fin = time.time()
+        duree = fin - debut
+        nb_args = len(args) + len(kwargs)
+        print(f"--- [LOG] Temps: {duree:.6f}s | Params reçus: {nb_args} ---")
+        return resultat
+    return enveloppe
+
+@moniteur_performance
+def analyser(*nums, arrondi=False, **options):
+    if not nums:
+        raise ValueError("Erreur : Aucun nombre n'a été fourni en entrée.")
+    
+    liste_nums = list(nums)
+    if options.get('strict_positive', False):
+        for n in liste_nums:
+            if n <= 0:
+                raise ValueError(f"Erreur : Le nombre {n} n'est pas strictement positif.")
+            
+    if options.get('unique', False):
+        liste_nums = list(set(liste_nums))
+        
+    if 'func' in options and callable(options['func']):
+        fonction_perso = options['func']
+        liste_nums = [fonction_perso(x) for x in liste_nums]
+    resultat = liste_nums  
+    
+    if options.get('somme', False):
+        resultat = sum(liste_nums)
+        
+    elif options.get('moyenne', False):
+        resultat = sum(liste_nums) / len(liste_nums)
+        
+    elif options.get('tri', False):
+        inverse = options.get('reverse', False)
+        resultat = sorted(liste_nums, reverse=inverse)
+        
+    elif options.get('max', False):
+        resultat = max(liste_nums)
+        
+    elif options.get('min', False):
+        resultat = min(liste_nums)
+
+    if arrondi and isinstance(resultat, (int, float)):
+        try:
+            resultat = round(resultat)
+        except TypeError:
+            pass
+
+    return resultat
+
+print("--- Test 1 : Somme ---")
+res = analyser(10, 20, 30, somme=True)
+print(f"Résultat : {res}\n")
+
+print("--- Test 2 : Moyenne avec doublons et arrondi ---")
+res = analyser(10, 10, 20, 5, moyenne=True, unique=True, arrondi=True)
+print(f"Résultat : {res}\n")
+
+print("--- Test 3 : Exception strict_positive ---")
+try:
+    analyser(10, -5, 20, strict_positive=True)
+except ValueError as e:
+    print(f"Exception attrapée : {e}\n")
+
+print("--- Test 4 : Lambda (carré) + Tri ---")
+res = analyser(3, 1, 4, 2, tri=True, func=lambda x: x**2)
+print(f"Résultat : {res}\n")
+
+print("--- Test 5 : Liste vide ---")
+try:
+    analyser()
+except ValueError as e:
+    print(f"Exception attrapée : {e}\n")
+
+
+EX4:

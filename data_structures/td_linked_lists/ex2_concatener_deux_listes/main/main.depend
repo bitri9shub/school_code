@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1763543016 source:c:\users\hp\desktop\github\school_code\data_structures\td_linked_lists\ex2_concatener_deux_listes\main\functionlist.c
+	"headers.h"
+
+1763544051 c:\users\hp\desktop\github\school_code\data_structures\td_linked_lists\ex2_concatener_deux_listes\main\headers.h
+	<stdio.h>
+	<stdlib.h>
+
+1763544112 source:c:\users\hp\desktop\github\school_code\data_structures\td_linked_lists\ex2_concatener_deux_listes\main\main.c
+	"headers.h"
+
