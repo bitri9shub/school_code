@@ -1,0 +1,39 @@
+1. SELECT user FROM dual;
+2. SELECT sysdate FROM dual;
+3. SELECT table_name FROM user_tables;
+4.
+CREATE TABLE Service(
+    id INT(2) PRIMARY KEY,
+    nom VARCHAR2(25)
+);
+DESCRIBE Service;
+5.
+CREATE TABLE Employe(
+    id NUMBER(7) PRIMARY KEY,
+    nom VARCHAR2(25) NOT NULL,
+    salaire NUMBER(4),
+    id_service NUMBER(2),
+    CONSTRAINT employe_service_pk FOREIGN KEY (id_service) 
+        REFERENCES Service(id)
+);
+DESCRIBE Employe;
+
+6. ALTER TABLE Employe MODIFY nom VARCHAR2(30);
+DESCRIBE Employe;
+
+7. SELECT table_name FROM user_tables WHERE table_name IN ('SERVICE', 'EMPLOYE');
+
+8. ALTER TABLE Employe ADD Fonction VARCHAR2(25);
+DESCRIBE Employe;
+
+9. ALTER TABLE Employe DROP COLUMN salaire;
+DESCRIBE Employe;
+
+10. CREATE TABLE Employe2 AS
+SELECT EMPNO AS id_emp, ENAME AS nom, DEPTNO AS id_service
+FROM EMP;
+DESCRIBE Employe2;
+
+11. DROP TABLE Employe;
+
+12. RENAME Employe2 TO Employe;
