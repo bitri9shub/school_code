@@ -1,0 +1,252 @@
+PARTIE 2:
+EX1:
+class HashTableChaining:
+    def __init__(self, m):
+        self.m = m
+        self.table = [[] for _ in range(m)]
+    
+    def hash_function(self, c):
+        return c % self.m
+    
+    def insert(self, c):
+        index = self.hash_function(c)
+        if c not in self.table[index]:
+            self.table[index].append(c)
+    
+    def search(self, c):
+        index = self.hash_function(c)
+        return c in self.table[index]
+    
+    def delete(self, c):
+        index = self.hash_function(c)
+        if c in self.table[index]:
+            self.table[index].remove(c)
+            return True
+        return False
+
+print("=" * 80)
+print("Exercice 1: Table de Hachage avec chaînage")
+print("=" * 80)
+
+for m in [100, 1000, 10000, 100000]:
+    n = 2 * m
+    ht = HashTableChaining(m)
+    
+    elements = [random.randint(0, 1000000) for _ in range(n)]
+    
+    for elem in elements:
+        ht.insert(elem)
+    
+    print(f"\nm = {m}, n = {n}")
+    print(f"Insertion de {n} éléments terminée")
+
+EX2:
+class HashTableOpenAddressing:
+    def __init__(self, m, probing_type='linear'):
+        self.m = m
+        self.table = [None] * m
+        self.probing_type = probing_type
+    
+    def hash_prime(self, c):
+        return c % self.m
+    
+    def hash_linear(self, c, i, a=1):
+        return (self.hash_prime(c) + i * a) % self.m
+    
+    def hash_quadratic(self, c, i):
+        return (self.hash_prime(c) + i * i) % self.m
+    
+    def hash_double(self, c, i):
+        h1 = c % self.m
+        h2 = 1 + (c % (self.m - 1))
+        return (h1 + i * h2) % self.m
+    
+    def insert(self, c):
+        for i in range(self.m):
+            if self.probing_type == 'linear':
+                index = self.hash_linear(c, i)
+            elif self.probing_type == 'quadratic':
+                index = self.hash_quadratic(c, i)
+            elif self.probing_type == 'double':
+                index = self.hash_double(c, i)
+            
+            if self.table[index] is None:
+                self.table[index] = c
+                return True
+        return False
+    
+    def search(self, c):
+        for i in range(self.m):
+            if self.probing_type == 'linear':
+                index = self.hash_linear(c, i)
+            elif self.probing_type == 'quadratic':
+                index = self.hash_quadratic(c, i)
+            elif self.probing_type == 'double':
+                index = self.hash_double(c, i)
+            
+            if self.table[index] is None:
+                return False
+            if self.table[index] == c:
+                return True
+        return False
+    
+    def delete(self, c):
+        for i in range(self.m):
+            if self.probing_type == 'linear':
+                index = self.hash_linear(c, i)
+            elif self.probing_type == 'quadratic':
+                index = self.hash_quadratic(c, i)
+            elif self.probing_type == 'double':
+                index = self.hash_double(c, i)
+            
+            if self.table[index] is None:
+                return False
+            if self.table[index] == c:
+                self.table[index] = None
+                return True
+        return False
+
+print("\n" + "=" * 80)
+print("Exercice 2: Table de hachage avec adressage ouvert")
+print("=" * 80)
+
+m_values = [11, 101, 1009, 10007]
+probing_methods = ['linear', 'quadratic', 'double']
+results = {method: [] for method in probing_methods}
+
+for m in m_values:
+    n = int(0.7 * m)
+    print(f"\nm = {m}, n = {n}")
+    
+    elements = [random.randint(0, m-1) for _ in range(n)]
+    
+    for method in probing_methods:
+        ht = HashTableOpenAddressing(m, method)
+        
+        start_time = time.time()
+        for elem in elements:
+            ht.insert(elem)
+        insertion_time = time.time() - start_time
+        
+        results[method].append(insertion_time)
+        print(f"  {method}: {insertion_time:.6f} secondes")
+
+plt.figure(figsize=(10, 6))
+for method in probing_methods:
+    plt.plot(m_values, results[method], marker='o', label=method.capitalize())
+
+plt.xlabel('Taille de la table (m)')
+plt.ylabel('Temps d\'exécution (secondes)')
+plt.title('Comparaison des méthodes de sondage')
+plt.legend()
+plt.grid(True)
+plt.xscale('log')
+plt.show()
+
+EX3:
+class BloomFilter:
+    def __init__(self, m, k):
+        self.m = m
+        self.k = k
+        self.bit_array = [0] * m
+    
+    def hash_functions(self, x):
+        hashes = []
+        for i in range(self.k):
+            hash_val = (x * (i + 1) + i * i) % self.m
+            hashes.append(hash_val)
+        return hashes
+    
+    def insert(self, x):
+        for h in self.hash_functions(x):
+            self.bit_array[h] = 1
+    
+    def contains(self, x):
+        for h in self.hash_functions(x):
+            if self.bit_array[h] == 0:
+                return False
+        return True
+
+print("\n" + "=" * 80)
+print("Exercice 3: Filtre de Bloom")
+print("=" * 80)
+
+n = 5000
+m = 25000
+
+for k in [2, 3, 4]:
+    bf = BloomFilter(m, k)
+    
+    inserted_elements = set()
+    for _ in range(n):
+        elem = random.randint(0, 1000000)
+        bf.insert(elem)
+        inserted_elements.add(elem)
+    
+    false_positives = 0
+    test_size = 10000
+    
+    for _ in range(test_size):
+        elem = random.randint(0, 1000000)
+        if elem not in inserted_elements:
+            if bf.contains(elem):
+                false_positives += 1
+    
+    false_positive_rate = (false_positives / test_size) * 100
+    print(f"\nk = {k}")
+    print(f"Taux de faux positifs: {false_positive_rate:.2f}%")
+
+EX4:
+class CountMinSketch:
+    def __init__(self, width, depth):
+        self.width = width
+        self.depth = depth
+        self.table = [[0] * width for _ in range(depth)]
+    
+    def hash_function(self, x, i):
+        return ((i + 1) * x + i * i) % self.width
+    
+    def update(self, x, count=1):
+        for i in range(self.depth):
+            index = self.hash_function(x, i)
+            self.table[i][index] += count
+    
+    def estimate(self, x):
+        min_count = float('inf')
+        for i in range(self.depth):
+            index = self.hash_function(x, i)
+            min_count = min(min_count, self.table[i][index])
+        return min_count
+
+print("\n" + "=" * 80)
+print("Exercice 4: Count-Min Sketch")
+print("=" * 80)
+
+width = 1000
+depths = [2, 3, 5, 7]
+
+elements = [random.randint(0, 100) for _ in range(10000)]
+true_counts = {}
+for elem in elements:
+    true_counts[elem] = true_counts.get(elem, 0) + 1
+
+print("\nComparaison de la précision avec différents nombres de fonctions de hachage:")
+
+for depth in depths:
+    cms = CountMinSketch(width, depth)
+    
+    for elem in elements:
+        cms.update(elem)
+    
+    total_error = 0
+    for elem, true_count in true_counts.items():
+        estimated_count = cms.estimate(elem)
+        error = abs(estimated_count - true_count)
+        total_error += error
+    
+    avg_error = total_error / len(true_counts)
+    print(f"\nNombre de fonctions de hachage (depth) = {depth}")
+    print(f"Erreur moyenne: {avg_error:.2f}")
+    print(f"Erreur totale: {total_error}")
+
+print("\n" + "=" * 80)
